@@ -1,0 +1,222 @@
+/* Global */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #0d1b2a;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Background Video */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+  filter: brightness(0.55) contrast(1.1);
+}
+
+/* Overlay (slight tint for readability) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  z-index: -1;
+}
+
+/* Header (glassmorphic, transparent) */
+header {
+  background: rgba(13, 27, 42, 0.04);   /* ✅ 96% transparent */
+  color: #ffffff;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glassmorphism Container (User Form + Admin Panel + Admin Login) */
+.container {
+  position: relative;
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(30, 58, 95, 0.04);  /* ✅ 96% transparent */
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Neon running border (follows rounded corners) */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(270deg, #00aaff, #00ddff, #00aaff);
+  background-size: 300% 300%;
+  animation: neonRun 6s linear infinite;
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Neon border animation */
+@keyframes neonRun {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+h2, h3 {
+  margin-bottom: 15px;
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+
+/* Inputs & Buttons */
+.container input,
+.container button {
+  width: 80%;
+  display: block;
+  margin: 12px auto;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Input Fields */
+.container input {
+  background: rgba(15, 52, 96, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.container input:focus {
+  outline: none;
+  border-color: #00aaff;
+  box-shadow: 0 0 10px #00aaff;
+}
+
+/* Buttons */
+button {
+  background: rgba(0,119,182,0.25);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: rgba(0,150,199,0.4);
+  transform: scale(1.05);
+}
+
+/* Messages */
+.success { color: #90ee90; font-weight: bold; }
+.error { color: #ff6b6b; font-weight: bold; }
+#limitInfo { font-weight: bold; color: #ffd166; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: rgba(15, 52, 96, 0.04);  /* ✅ 96% transparent */
+  color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+table, th, td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background: rgba(27, 38, 59, 0.08);
+  color: #ffffff;
+}
+
+/* Hide section */
+.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .container input,
+  .container button {
+    width: 95%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  table, th, td {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .container {
+    width: 95%;
+    margin: 20px auto;
+    padding: 12px;
+  }
+
+  h2, h3 {
+    font-size: 18px;
+  }
+
+  .container input,
+  .container button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  table, th, td {
+    font-size: 11px;
+    padding: 6px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
